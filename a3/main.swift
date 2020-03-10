@@ -5,6 +5,7 @@
 //  Created by Dong Pei on 2020-03-10.
 //  Copyright © 2020 COMP1601. All rights reserved.
 //
+import Darwin
 
 import Foundation
 
@@ -61,16 +62,31 @@ func correctTypeInt()->Int{
     return returnVal
 }
 
+//print("Out: "+String(height))
+//print("Out: "+String(angle))
+//print("Out: "+String(velocity))
+//print("Out: "+String(performance))
 
+var flag = true
+while(flag){
+    print("Please enter initial height of the projectile above the ground (in meters)")
+    var height:Double = correctTypeDouble()
 
-print("Please enter initial height of the projectile above the ground (in meters)")
-var height:Double = correctTypeDouble()
-
-print("Please enter initial angle of release (in degrees)")
-var angle:Double = correctTypeDouble()
-print("Please enter initial velocity of the projectile (in meters/s")
-var velocity:Double = correctTypeDouble()
-print("Please enter number of divisions per second for the simulation to use (e.g. 100)")//integer value fot this
-var performance:Int = correctTypeInt()
+    print("Please enter initial angle of release (in degrees)")
+    var angle:Double = correctTypeDouble()
+    print("Please enter initial velocity of the projectile (in meters/s")
+    var velocity:Double = correctTypeDouble()
+    print("Please enter number of divisions per second for the simulation to use (e.g. 100)")//integer value fot this
+    var performance:Int = correctTypeInt()
+    if height < 0 || angle < 0 || velocity < 0 || performance < 0 {
+        print("Initilized failed,INFORMAION"+" 😑")
+        flag = true
+    }
+    else{
+        print("Initilized Successfully,REENTER INFORMAION"+"😃")
+        flag = false
+        
+    }
+}
 
 
