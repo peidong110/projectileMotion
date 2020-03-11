@@ -79,11 +79,11 @@ while(flag){
     print("Please enter number of divisions per second for the simulation to use (e.g. 100)")//integer value fot this
     var performance:Int = correctTypeInt()
     if height < 0 || angle < 0 || velocity < 0 || performance < 0 {
-        print("Initilized failed,INFORMAION"+" 😑")
+        print("Initilized failed,REENTER INFORMAION"+" 😑")
         flag = true
     }
     else{
-        print("Initilized Successfully,REENTER INFORMAION"+"😃")
+        print("Initilized Successfully, now Initized data for you"+"😃")
         flag = false
         
     }

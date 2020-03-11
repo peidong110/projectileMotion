@@ -7,3 +7,13 @@
 //
 
 import Foundation
+class Ball {
+    private var colour:String = "red"
+    private static let GRAVITY:Double = -9.81
+    
+    
+    func getColour() -> String {
+        return colour
+    }
+    
+}
