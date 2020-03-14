@@ -28,14 +28,18 @@ class Ball {
     
     private var acclerationX:Double
     private var acclerationY:Double
-    
+    private var numberOfOperations:Int
     private var previous:Double
     func getColour() -> String {
         return colour
     }
 
-    init(height:Double,angle:Double,veloctiy:Double) {
-        let height = height , angle = angle, velocity = veloctiy
+    init(height:Double,angle:Double,veloctiy:Double,num:Int) {
+        let height = height
+        let angle = angle
+        let velocity = veloctiy
+        
+        self.numberOfOperations = num
         self.deltaX = velocity * cos(angle * Double.pi / 180)
         self.deltyY = velocity * sin(angle * Double.pi / 180)
         self.initialX = 0.0//x does not move because you are droping it
@@ -52,10 +56,11 @@ class Ball {
         self.acclerationY = Ball.GRAVITY  //gravity is a static value so we do not change it
         self.previous = 0.0
         //Initialize all the members we just declared
+        
     }
-    func action(numOperations:Int) -> Void {
+    func action() -> Void {
         var time:Double = 0.0 //start with 0, time increased by time elapsed each time operation finished
-        let timeElapesd:Double = 1.0 / Double(numOperations)//how many seconds it each operation elapsed
+        let timeElapesd:Double = 1.0 / Double(numberOfOperations)//how many seconds it each operation elapsed
         let numerator:Double = -self.deltyY - (self.deltyY * self.deltyY - 2 * self.initialY * self.acclerationY).squareRoot()
         let denominator:Double = self.acclerationY
         let groundTime:Double =  numerator / denominator //apply the fomula
