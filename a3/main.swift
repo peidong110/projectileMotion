@@ -61,32 +61,40 @@ func correctTypeInt()->Int{
     }
     return returnVal
 }
-
+//
 //print("Out: "+String(height))
 //print("Out: "+String(angle))
 //print("Out: "+String(velocity))
 //print("Out: "+String(performance))
 
-var flag = true
-while(flag){
-    print("Please enter initial height of the projectile above the ground (in meters)")
-    var height:Double = correctTypeDouble()
-
-    print("Please enter initial angle of release (in degrees)")
-    var angle:Double = correctTypeDouble()
-    print("Please enter initial velocity of the projectile (in meters/s")
-    var velocity:Double = correctTypeDouble()
-    print("Please enter number of divisions per second for the simulation to use (e.g. 100)")//integer value fot this
-    var performance:Int = correctTypeInt()
-    if height < 0 || angle < 0 || velocity < 0 || performance < 0 {
-        print("Initilized failed,REENTER INFORMAION"+" 😑")
-        flag = true
-    }
-    else{
-        print("Initilized Successfully, now Initized data for you"+"😃")
-        flag = false
-        
-    }
-}
+//var flag = true
+//while(flag){
+//    print("Please enter initial height of the projectile above the ground (in meters)")
+//    var height:Double = correctTypeDouble()
+//
+//    print("Please enter initial angle of release (in degrees)")
+//    var angle:Double = correctTypeDouble()
+//    print("Please enter initial velocity of the projectile (in meters/s")
+//    var velocity:Double = correctTypeDouble()
+//    print("Please enter number of divisions per second for the simulation to use (e.g. 100)")//integer value fot this
+//    let performance:Int = correctTypeInt()
+//    if height < 0 || angle < 0 || velocity < 0 || performance < 0 {
+//        print("Initilized failed,REENTER INFORMAION"+" 😑")
+//        flag = true
+//    }
+//    else{
+//        print("Initilized Successfully, now Initized data for you"+"😃")
+//        print(velocity)
+//        print(angle)
+//        print(height)
+//        print(performance)
+//
+//
+//        flag = false
+//
+//    }
+//}
+let ball = Ball(height: 850, angle: 30, veloctiy: 70)
+ball.action(numOperations: 50)
 
 
