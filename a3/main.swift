@@ -9,6 +9,8 @@ import Darwin
 import Foundation
 
 func correctTypeDouble()->Double{
+    //get a string we want from the command line (Double format)
+
     var returnVal:Double = -1
     let input = readLine()
     if let input = input {
@@ -30,6 +32,7 @@ func correctTypeDouble()->Double{
     return returnVal
 }
 func correctTypeInt()->Int{
+    //get a string we want from the command line (Integer format)
     var returnVal:Int = -1
     let input = readLine()
     if let input = input {
@@ -41,7 +44,6 @@ func correctTypeInt()->Int{
             let con = Int(input)
             if(con == nil){
                 print("Wrong Information Parsed")
-                
                 returnVal = con ?? -1
             }
             else{
