@@ -2,7 +2,7 @@
 //  main.swift
 //  a3
 //
-//  Created by Dong Pei on 2020-03-10.
+//  Created by Payton Pei on 2020-03-10.
 //  Copyright © 2020 COMP1601. All rights reserved.
 //
 import Darwin
@@ -19,7 +19,7 @@ func correctTypeDouble()->Double{
         else{
             let con = Double(input)
             if(con == nil){
-                print("Nor Quit nor float")
+                print("Wrong Information Parsed")
                 returnVal = con ?? -1.0
             }
             else{
@@ -40,7 +40,8 @@ func correctTypeInt()->Int{
         else{
             let con = Int(input)
             if(con == nil){
-                print("Nor Quit nor float")
+                print("Wrong Information Parsed")
+                
                 returnVal = con ?? -1
             }
             else{
@@ -53,25 +54,44 @@ func correctTypeInt()->Int{
 
 var flag = true
 while(flag){
+    var height:Double = 0.0
+    var angle:Double = 0.0
+    var velocity:Double = 0.0
+    var performance:Int = 0
+    print("Please type quit to stop the programme at any time")
     print("Please enter initial height of the projectile above the ground (in meters)")
-    let height:Double = correctTypeDouble()
+    height = correctTypeDouble()
+    while height < 0{
+        print("Please re-enter initial height of the projectile above the ground (in meters)")
+        height = correctTypeDouble()
+    }
     print("Please enter initial angle of release (in degrees)")
-    let angle:Double = correctTypeDouble()
+    angle = correctTypeDouble()
+    while angle < 0 {
+        print("Please re-enter initial angle of release (in degrees)")
+        angle = correctTypeDouble()
+    }
     print("Please enter initial velocity of the projectile (in meters/s")
-    let velocity:Double = correctTypeDouble()
+    velocity = correctTypeDouble()
+    while velocity < 0 {
+        print("Please re-enter initial velocity of the projectile (in meters/s")
+        velocity = correctTypeDouble()
+    }
     print("Please enter number of divisions per second for the simulation to use (e.g. 100)")//integer value fot this
-    let performance:Int = correctTypeInt()
+    performance = correctTypeInt()
+    while performance < 0 {
+            print("Please re-enter number of divisions per second for the simulation to use (e.g. 100)")
+        performance = correctTypeInt()
+    }
     if height < 0 || angle < 0 || velocity < 0 || performance < 0 {
         print("Initilized failed,REENTER INFORMAION"+" 😑")
         flag = true
     }
     else{
         print("Initilized Successfully, now Initized data for you"+"😃")
-        let ball = Ball(height: height, angle: angle, veloctiy: velocity,num: performance)
-        ball.action()
+        print("Theortical :                                               Euler: ")
+        let ball = Ball(height: height, angle: angle, veloctiy: velocity)
+        ball.advance(numberOfOperations:performance)
             //850 30 70 50
     }
 }
-
-
-

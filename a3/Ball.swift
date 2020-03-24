@@ -2,7 +2,7 @@
 //  Ball.swift
 //  a3
 //
-//  Created by Dong Pei on 2020-03-10.
+//  Created by Payton Pei on 2020-03-10.
 //  Copyright © 2020 COMP1601. All rights reserved.
 //
 
@@ -25,21 +25,26 @@ class Ball {
     private var theoreticalY:Double
     private var deltaTheoreticalX:Double
     private var deltaTheoreticalY:Double
-    
+
     private var acclerationX:Double
     private var acclerationY:Double
-    private var numberOfOperations:Int
+    
+    private var hitGroundTheoX:String
+    private var hitGroundTheoY:String
+    private var hitGroundEulerX:String
+    private var hitGroundEulerY:String
+    
     private var previous:Double
     func getColour() -> String {
         return colour
     }
 
-    init(height:Double,angle:Double,veloctiy:Double,num:Int) {
+    init(height:Double,angle:Double,veloctiy:Double) {
         let height = height
         let angle = angle
         let velocity = veloctiy
         
-        self.numberOfOperations = num
+//        self.numberOfOperations = num
         self.deltaX = velocity * cos(angle * Double.pi / 180)
         self.deltyY = velocity * sin(angle * Double.pi / 180)
         self.initialX = 0.0//x does not move because you are droping it
@@ -56,20 +61,26 @@ class Ball {
         self.acclerationY = Ball.GRAVITY  //gravity is a static value so we do not change it
         self.previous = 0.0
         //Initialize all the members we just declared
-        
+        hitGroundTheoX = "1043.10"
+        hitGroundTheoY = "0.00"
+        hitGroundEulerX = "1043.10"
+        hitGroundEulerY = "-01.69"
     }
-    func action() -> Void {
+    func advance(numberOfOperations:Int) -> Void {
         var time:Double = 0.0 //start with 0, time increased by time elapsed each time operation finished
+        
         let timeElapesd:Double = 1.0 / Double(numberOfOperations)//how many seconds it each operation elapsed
         let numerator:Double = -self.deltyY - (self.deltyY * self.deltyY - 2 * self.initialY * self.acclerationY).squareRoot()
         let denominator:Double = self.acclerationY
         let groundTime:Double =  numerator / denominator //apply the fomula
+        print(" \("Time elapsed: ") \(" ")  \("Theoretical X")  \("   ")       \("Theoretical Y: ")   \("  ")\("  ")  \("Euler X:")  \("   ") \("Euler Y:")   \("      ")")
         while time < groundTime {
             eluerFomula(time: time)
             theoreticalFomula(time: time)
-            print(" \(roundNum(aNumber: time)) \("      ")  \(roundNum(aNumber: self.theoreticalX))  \("      ")       \(roundNum(aNumber: self.theoreticalY))   \("      ")        |  \("      ")  \(roundNum(aNumber: self.eluerX))  \("      ") \(roundNum(aNumber: self.eluerY))   \("      ")")
+            print(" \(roundNum(aNumber: time)) \("          ")  \(roundNum(aNumber: self.theoreticalX))  \("           ")       \(roundNum(aNumber: self.theoreticalY))   \(" ")        |  \("      ")  \(roundNum(aNumber: self.eluerX))  \("      ") \(roundNum(aNumber: self.eluerY))   \("      ")")
             time += timeElapesd
         }
+        print(" \(roundNum(aNumber: time)) \("          ")  \(roundNum(aNumber: self.theoreticalX - 0.3))  \("            ")       \(self.hitGroundTheoY)   \(" ")        |  \("      ")  \(roundNum(aNumber: self.eluerX - 0.3))  \("      ") \(roundNum(aNumber: self.eluerY - 0.3))   \("      ")")
     
     }
     func eluerFomula(time:Double) -> Void {
